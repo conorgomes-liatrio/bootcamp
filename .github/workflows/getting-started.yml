@@ -20,3 +20,20 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo ${{ secrets.SECRET_PASSWORD }}
+
+  generate-string:
+    
+    runs-on: ubuntu-latest
+
+    outputs: 
+        P_STR: ${{ env.P_STR }}
+    steps:
+      - name: Produce string
+        run: echo "P_STR='stringy'" >> "$GITHUB_ENV"
+
+  print-string:
+    needs: [ generate-string ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print string
+        run: echo ${{ needs.generate-string.outputs.P_STR}}
