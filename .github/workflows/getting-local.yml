@@ -7,7 +7,7 @@ on:
 
 jobs:
   generate-string:
-    runs-on: local
+    runs-on: self-hosted
     steps:
       - name: Write file
         run: echo stringy > data.txt
@@ -20,7 +20,7 @@ jobs:
 
   print-string:
     needs: [ generate-string ]
-    runs-on: local
+    runs-on: self-hosted
     steps:
       - name: Download file
         uses: actions/download-artifact@v4
@@ -36,7 +36,7 @@ jobs:
     strategy:
       matrix: 
         num: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    runs-on: local
+    runs-on: self-hosted
     steps: 
       - name: Print string and num
         run: echo "$OUTSTR" ${{ matrix.num }}
