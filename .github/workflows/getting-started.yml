@@ -36,4 +36,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print string
-        run: echo ${{ needs.generate-string.outputs.P_STR}}
+        run: echo ${{ needs.generate-string.outputs.P_STR }}
+
+  matrix-print:
+    needs: [ generate-string ]
+    strategy:
+      matrix: 
+        num: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Print string and num
+        run: echo echo ${{ needs.generate-string.outputs.P_STR }} ${{ matrix.num }}
