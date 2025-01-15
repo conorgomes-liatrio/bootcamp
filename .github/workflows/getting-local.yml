@@ -5,9 +5,6 @@ on:
   push:
     branches: [ "main" ]
 
-env: 
-  OUTSTR: WRONG
-
 jobs:
   generate-string:
     runs-on: self-hosted
@@ -41,5 +38,11 @@ jobs:
         num: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     runs-on: self-hosted
     steps: 
+      - name: Download file
+        uses: actions/download-artifact@v4
+        with:
+          name: word-string
+      - name: Store string
+        run: echo "OUTSTR=$(cat data.txt)" >> "$GITHUB_ENV"
       - name: Print string and num
         run: echo "$OUTSTR" ${{ matrix.num }}
