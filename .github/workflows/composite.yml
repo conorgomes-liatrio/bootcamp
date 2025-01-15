@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: foo
-        uses: conorgomes-liatrio/bootcamp/composite@latest
+        uses: conorgomes-liatrio/bootcamp/composite@$(git rev-parse --short "$GITHUB_SHA")
         with:
           who-to-greet: 'GORBLIN'
       - run: echo random-number "$RANDOM_NUMBER"
