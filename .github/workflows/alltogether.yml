@@ -1,0 +1,10 @@
+name: CI - Comp + Reuse
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+    call-reuse:
+        uses: ./.github/workflows/reusable.yml
