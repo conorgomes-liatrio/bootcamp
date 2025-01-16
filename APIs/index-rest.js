@@ -1,4 +1,4 @@
-import { Octokit, App } from "octokit";
+import { Octokit } from "octokit";
 import express from 'express';
 import dotenv from 'dotenv';
 
@@ -20,7 +20,14 @@ app.get('/', async (request, response) => {
         console.log(jason["data"][key]["body"]);
     }
 
+    await octokit.request("POST /repos/conorgomes-liatrio/API-testing/issues", {
+        owner: "conorgomes-liatrio",
+        repo: "API-testing",
+        title: "AUTOMATED ISSUE",
+        body: Date.now().toString(),
+      });
+
     response.json(jason.data);
 });
 
-app.listen(3001, () => console.log('App available on http://localhost:80'));
+app.listen(3000, () => console.log('App available on http://localhost:3000'));
